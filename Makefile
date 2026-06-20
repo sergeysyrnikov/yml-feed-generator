@@ -44,4 +44,4 @@ deps-update: ## Update dependencies
 	uv sync -U
 
 run: ## Run Django dev server with YML feed
-	$(RUN_CMD) python django_app.py
+	$(RUN_CMD) python app.py

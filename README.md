@@ -5,7 +5,7 @@
 ## Структура
 
 - `feed_task.py` — исходный модуль с данными и функцией `build_yml()`
-- `django_app.py` — пример подключения к Django View и минимальный сервер для проверки
+- `app.py` — пример подключения к Django View и минимальный сервер для проверки
 - `tests/` — автоматические тесты
 
 ## Требования
@@ -21,7 +21,7 @@ make test
 make run
 ```
 
-> **Примечание для Windows:** если у вас нет команды `make`, вы можете установить её через пакетный менеджер (например, Scoop: `scoop install make`) либо выполнять команды напрямую: `uv run python django_app.py` (вместо `make run`) и `uv run pytest tests/` (вместо `make test`).
+> **Примечание для Windows:** если у вас нет команды `make`, вы можете установить её через пакетный менеджер (например, Scoop: `scoop install make`) либо выполнять команды напрямую: `uv run python app.py` (вместо `make run`) и `uv run pytest tests/` (вместо `make test`).
 
 ## Полезные команды
 
