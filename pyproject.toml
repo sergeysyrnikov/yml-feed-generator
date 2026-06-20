@@ -1,0 +1,90 @@
+[project]
+name = "yml-feed-generator"
+version = "0.1.0"
+description = "YML product feed generator for Yandex Direct"
+authors = [{ name = "Sergey Syrnikov" }]
+requires-python = ">=3.12,<3.15"
+readme = "README.md"
+
+dependencies = [
+    "django>=6.0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0,<9",
+    "pytest-cov>=4.1.0,<5",
+    "black>=25.12.0",
+    "isort>=5.13.0,<6",
+    "flake8>=7.0.0,<8",
+    "mypy>=1.8.0,<2",
+    "ruff>=0.11.5,<0.12",
+    "django-stubs>=6.0.5",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["feed_task.py"]
+
+[tool.hatch.build.targets.wheel]
+include = ["feed_task.py"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --cov=feed_task --cov-report=term-missing --cov-report=xml --cov-report=html"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+[tool.black]
+line-length = 119
+target-version = ["py312"]
+include = '\.pyi?$'
+extend-exclude = '''
+^/dev-docs/
+^/build/
+^/.git/
+^/.venv/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 119
+include_trailing_comma = true
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.mypy]
+python_version = "3.12"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+strict_optional = true
+exclude = ["tests/", ".venv/", "dev-docs/"]
+
+[tool.ruff]
+line-length = 119
+exclude = [".venv", "__pycache__", "dev-docs"]
+
+[tool.pyright]
+include = ["feed_task.py", "tests"]
+pythonVersion = "3.12"
+venvPath = "."
+venv = ".venv"
